@@ -10,13 +10,13 @@ def getHeaders():
    'Authorization': 'Basic '+authorization
    }
    return headers 
-
+token = getHeaders()
 
 organization = input('Coloque a organização: ')
 project = input('Coloque o projeto: ')
 #! Pegar ID do repositório
-def getIdRepo():
-   headers = getHeaders()
+def getIdRepo(token):
+   headers = token
    wikiUrl = f"https://dev.azure.com/{organization}/{project}/_apis/wiki/wikis"
    requestID = r.get(url=wikiUrl,headers=headers)
    IDjson = requestID.json()
@@ -31,9 +31,9 @@ def getIdRepo():
       print('Existe mais de uma wiki')
 
 
-def deleteWiki():
-   headers = getHeaders()
-   repositoryId = getIdRepo()
+def deleteWiki(token):
+   headers = token
+   repositoryId = getIdRepo(token)
    confirmDelete = input('Confirma a exclusão desse repositório? (Y) Sim/(N) Não: ')
    if(confirmDelete == 'Y'):
       repourl = f"https://dev.azure.com/{organization}/{project}/_apis/git/repositories/{repositoryId}?api-version=7.0"
@@ -41,4 +41,4 @@ def deleteWiki():
       requestDelete = r.delete(url=repourl,headers=headers)
       if(str(requestDelete.status_code)=='204'):
          print("Seu repositório da Wiki foi apagado")
-deleteWiki()
+deleteWiki(token)
