@@ -2,16 +2,16 @@ import requests as r
 import base64
 import json
 
-def create_tasks(tokenPersonal,organization,project,parent_id,list_task):
+def create_tasks(token_personal,organization,project,parent_id,list_task):
   '''Cria tarefas no Azure DevOps de acordo com a lista com os nomes indicados como parâmetro
   parameters:
-      tokenPersonal(string): Token Pessoal para autenticar a requisição, pode ser obtida através  do portal do Azure DevOps
+      token_personal(string): Token Pessoal para autenticar a requisição, pode ser obtida através  do portal do Azure DevOps
       project(string): Nome do Projeto
       organization(string): Nome da Organização
       parent_id(string or int): Id do Backlog que ira receber a tarefa
       list_task(list): Lista de strings que serão utilizados como o nome de cada tarefa.
   '''
-  authorization = str(base64.b64encode(bytes(':'+tokenPersonal, 'ascii')), 'ascii')
+  authorization = str(base64.b64encode(bytes(':'+token_personal, 'ascii')), 'ascii')
   headers = {
   'Accept': 'application/json',
   'Authorization': 'Basic '+authorization,

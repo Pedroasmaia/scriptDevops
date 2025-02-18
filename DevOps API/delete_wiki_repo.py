@@ -2,14 +2,14 @@ import requests as r
 import base64
 
 
-def delete_wiki_repo(tokenPersonal,organization,project):
+def delete_wiki_repo(token_personal,organization,project):
     '''Deleta o repositório que a Wiki Utiliza
     parameters:
-        tokenPersonal(string): Token Pessoal para autenticar a requisição, pode ser obtida através  do portal do Azure DevOps
+        token_personal(string): Token Pessoal para autenticar a requisição, pode ser obtida através  do portal do Azure DevOps
         project(string): Nome do Projeto
         organization(string): Nome da Organização
     '''
-    authorization = str(base64.b64encode(bytes(':'+tokenPersonal, 'ascii')), 'ascii')
+    authorization = str(base64.b64encode(bytes(':'+token_personal, 'ascii')), 'ascii')
     headers = {
     'Accept': 'application/json',
     'Authorization': 'Basic '+authorization
