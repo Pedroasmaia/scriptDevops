@@ -29,3 +29,8 @@ steps:
          else:
              md.write("**Sem erros reportados**")
      print("✅ Relatório tfsec-report.md gerado com sucesso!")
+- task: MasamitsuMurase.publish-markdown-reports.custom-build-release-task.PublishMarkdownReports@1
+  displayName: 'Publish tfsec reports '
+  inputs:
+    contentPath: '$(Build.SourcesDirectory)'
+    indexFile: 'tfsec-report.md'
